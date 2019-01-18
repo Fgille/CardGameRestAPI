@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  ven. 18 jan. 2019 à 11:44
+-- Généré le :  jeu. 17 jan. 2019 à 22:16
 -- Version du serveur :  10.1.31-MariaDB
 -- Version de PHP :  7.2.4
 
@@ -32,26 +32,6 @@ CREATE TABLE `carteschoisi` (
   `cle` int(11) NOT NULL,
   `id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `carteschoisi`
---
-
-INSERT INTO `carteschoisi` (`cle`, `id`) VALUES
-(1, 666),
-(2, 666),
-(3, 666),
-(4, 666),
-(5, 666),
-(6, 666),
-(7, 666),
-(8, 0),
-(9, 0),
-(10, 0),
-(11, 666),
-(12, 666),
-(13, 666),
-(14, 666);
 
 -- --------------------------------------------------------
 
@@ -133,7 +113,7 @@ ALTER TABLE `stat`
 -- AUTO_INCREMENT pour la table `carteschoisi`
 --
 ALTER TABLE `carteschoisi`
-  MODIFY `cle` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `cle` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `listecarte`
