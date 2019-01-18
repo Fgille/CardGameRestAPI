@@ -4,72 +4,43 @@
   <meta charset="utf-8">
   <title>Card Game API REST</title>
   <link href="css/bootstrap.min.css" rel="stylesheet">
-    <script src="jquery-3.3.1.min.js"></script>
-    <style type="text/css">
-progress {
-   width: 300px;
-   margin: 1em auto;
-   padding: 4px;
-   border: 0 none;
-   background: #444;
-   border-radius: 14px;
-   box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5),
-               0px 1px 0px rgba(255,255,255,0.2);
-}
-progress::-moz-progress-bar {
-   background: #FFF;
-   border-radius: 12px;
-   box-shadow: inset 0 -2px 4px rgba(0,0,0,0.4),
-               0 2px 5px 0px rgba(0,0,0,0.3);
-}
-    </style>
+  <script src="jquery-3.3.1.min.js"></script>
 </head>
 <body>
-
-	<progress class="stat" id="stat1" max="10"></progress>
-	<progress class="stat" id="stat2" max="10"></progress>
-	<progress class="stat" id="stat3" max="10"></progress>
-	<progress class="stat" id="stat4" max="10"></progress>
+  <div class="py-5 text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-12" style="">
+          <h1 class="display-3">REST CARD GAME</h1>
+          <p class="lead text-muted">Jeux multijoueur sur une architecture REST</p>
+        </div>
+      </div>
+    </div>
+  </div>
 	
+  <div class="container text-center">
+    <div class="row" id="cartes">
+    	<div class="col-md-2">
+    	</div>
+
+    	<div class="col-md-4 card card-body">
+    		<h5 class="card-title"> Maître du Jeu</h5>
+    		<p class="card-text"> Vous organiserez le déroulement de la partie, l'aventurier devra vous répondre</p>
+    		<a href="MJ.php" class="btn btn-info">Incarnez le MJ</a>
+    	</div>
+
+    	<div class="col-md-1">
+    	</div>
+
+    	<div class="col-md-4 card card-body">
+    		<h5 class="card-title"> Aventurier</h5>
+    		<p class="card-text"> Vous devrez prendre les bonnes décisions dans l'ordre que le MJ vous imposeras</p>
+			<a href="Joueur.php" class="btn btn-info">Incarnez l'Aventurier</a>
+    	</div>
+
+  </div>
+</div>	
 
 
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script>
-  	// Exécute un appel AJAX GET
-// Prend en paramètres l'URL cible et la fonction callback appelée en cas de succès
-function ajaxGet(url, callback) {
-    var req = new XMLHttpRequest();
-    req.open("GET", url);
-    req.addEventListener("load", function () {
-        if (req.status >= 200 && req.status < 400) {
-            // Appelle la fonction callback en lui passant la réponse de la requête
-            callback(req.responseText);
-        } else {
-            console.error(req.status + " " + req.statusText + " " + url);
-        }
-    });
-    req.addEventListener("error", function () {
-        console.error("Erreur réseau avec l'URL " + url);
-    });
-    req.send(null);
-}
-  	function actualiseStat(){
-  		ajaxGet("http://localhost/DEVSCHOOL/serveur-api-php/stats.php", function (reponse) {
-    		// Transforme la réponse en un tableau d'articles
-    		var stats = JSON.parse(reponse);
-    		stats.stats.forEach(function (stat) {
-    		    // Ajout du titre et du contenu de chaque article
-    		    document.getElementById("stat1").value = stat.stat1;
-    		    document.getElementById("stat2").value = stat.stat2;
-    		    document.getElementById("stat3").value = stat.stat3;
-    		    document.getElementById("stat4").value = stat.stat4;
-    		}); 
-		});
-	setTimeout(actualiseStat,2000);
-  	}
-
-  	actualiseStat();
-
-  </script>
 </body>
 </html>

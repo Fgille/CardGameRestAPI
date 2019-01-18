@@ -66,20 +66,17 @@ progress {
 
   <div class="container">
     <div class="row" id="cartes">
-      <div class='col-md-3 card text-center card-body'>
-        <h5 class="card-title">TITLE</h5>
-        <p class="card-text">Lorem IPSUM</p>
-        <input type="button" class="btn btn-info" value="Choisir cette Carte" onclick="chargercarte(666)">
-      </
-    </div>
+
   </div>
-	
+</div>	
 
 
   <script src="js/bootstrap.bundle.min.js"></script>
   <script>
-  	// Exécute un appel AJAX GET
+    	// Exécute un appel AJAX GET
 // Prend en paramètres l'URL cible et la fonction callback appelée en cas de succès
+var firstrun = true;
+
 function ajaxGet(url, callback) {
     var req = new XMLHttpRequest();
     req.open("GET", url);
@@ -96,52 +93,106 @@ function ajaxGet(url, callback) {
     });
     req.send(null);
 }
-  	function actualiseStat(){
-  		ajaxGet("http://localhost/DEVSCHOOL/serveur-api-php/stats.php", function (reponse) {
-    		// Transforme la réponse en un tableau d'articles
-    		var stats = JSON.parse(reponse);
-    		stats.stats.forEach(function (stat) {
-    		    // Ajout du titre et du contenu de chaque article
-    		    document.getElementById("stat1").value = stat.stat1;
-    		    document.getElementById("stat2").value = stat.stat2;
-    		    document.getElementById("stat3").value = stat.stat3;
-    		    document.getElementById("stat4").value = stat.stat4;
-    		}); 
-		});
-	setTimeout(actualiseStat,2000);
-  	}
 
-  	actualiseStat();
-
-    var cartesElt = document.getElementById("cartes");
-     ajaxGet("http://132.166.169.217/DEVSCHOOL/serveur-api-php/cartes.php", function (reponse) {
-    // Transforme la réponse en un tableau de cartes
-    var cartes = JSON.parse(reponse);
-    cartes.listecarte.forEach(function (carte) {
-        // Ajout du titre et du contenu de chaque article
-        var divcarte = document.createElement("div")
-        divcarte.className="col-md-3 card text-center card-body";
-        var titreCarte = document.createElement("h5");
-        titreCarte.className="card-title";
-        titreCarte.textContent = carte.titre;
-        var contenuCarte = document.createElement("p");
-        contenuCarte.className="card-text";
-        contenuCarte.textContent = carte.texte;
-        cartesElt.appendChild(divcarte);
-        divcarte.appendChild(titreCarte);
-        divcarte.appendChild(contenuCarte);
-    });
-});
+function afficheLaLOOSE(){
+ ajaxGet("http://localhost//DEVSCHOOL/serveur-api-php/finpartie.php", function (reponse) {
+   // Transforme la réponse en un tableau d'articles
+        var msg = JSON.parse(reponse);
+        console.log('partie encore en cours');
+        if(msg.finpartie == 'OUI')
+        {
+         window.location.href="gameover.html";
+        }
+    });}
 
 function chargercarte(id) {
 
-  var url ="http://localhost/DEVSCHOOL/serveur-api-php/selectioncarte.php?id1=" + id;
+  var url ="http://localhost//DEVSCHOOL/serveur-api-php/selectioncarte.php?id1=" + id;
 
   var xhttp = new XMLHttpRequest();
   
   xhttp.open("GET", url, true);
   xhttp.send();
 }
+
+ function actualiseStat(){
+  ajaxGet("http://localhost//DEVSCHOOL/serveur-api-php/stats.php", function (reponse) {
+    // Transforme la réponse en un tableau d'articles
+    var stats = JSON.parse(reponse);
+    stats.stats.forEach(function (stat) {
+        // Ajout du titre et du contenu de chaque article
+        document.getElementById("stat1").value = stat.stat1;
+        document.getElementById("stat2").value = stat.stat2;
+        document.getElementById("stat3").value = stat.stat3;
+        document.getElementById("stat4").value = stat.stat4;
+    }); 
+});
+}
+
+  
+    //détermine si c'est son tour :
+    function actualiseTour(){
+
+      afficheLaLOOSE();
+      actualiseStat();
+
+      ajaxGet("http://localhost//DEVSCHOOL/serveur-api-php/montour.php?user=MJ", function (reponse) {
+        // Transforme la réponse en un tableau d'articles
+        var tour = JSON.parse(reponse);
+          if(tour.Tour == "NON")
+          {
+            console.log("NON pas ton tour");
+                  var element = document.getElementById("cartes");
+                  while (element.firstChild) {
+                    element.removeChild(element.firstChild);
+                  }
+
+                  firstrun = true;
+
+          }
+          if(tour.Tour == "OUI" && firstrun == true)
+          {
+            console.log("OUI c'est ton tour");
+              
+                  var cartesElt = document.getElementById("cartes");
+                   ajaxGet("http://localhost//DEVSCHOOL/serveur-api-php/cartes.php", function (reponse) {
+                  // Transforme la réponse en un tableau de cartes
+                  var cartes = JSON.parse(reponse);
+                  cartes.listecarte.forEach(function (carte) {
+                      // Ajout du titre et du contenu de chaque article
+                      var divcarte = document.createElement("div")
+                      divcarte.className="col-md-3 card text-center card-body";
+                      var titreCarte = document.createElement("h5");
+                      titreCarte.className="card-title";
+                      titreCarte.textContent = carte.titre;
+                      var contenuCarte = document.createElement("p");
+                      contenuCarte.className="card-text";
+                      contenuCarte.innerText = carte.texte;
+                      var lienCarte = document.createElement("input");
+                      lienCarte.className="btn btn-info";
+                      lienCarte.value="Choisir cette Carte";
+                      lienCarte.onclick=function(){chargercarte(carte.id)};
+                      cartesElt.appendChild(divcarte);
+                      divcarte.appendChild(titreCarte);
+                      divcarte.appendChild(contenuCarte);
+                      divcarte.appendChild(lienCarte);
+                  });
+              });
+              
+              firstrun = false;
+
+          }
+          if(tour.Tour == "OUI" && firstrun == false)
+          {
+            console.log("OUI c'est ton tour et tu traines");
+          }
+        }); 
+  setTimeout(actualiseTour,500);
+    }
+
+    actualiseTour();
+
+  
 
   </script>
 </body>

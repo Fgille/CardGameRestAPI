@@ -25,7 +25,7 @@ if( !empty($_GET["id"]) && !empty($_GET["choix"])){
 	$requete->bindParam(':id', $_GET['id']);
 	$requete->execute();
 
-	$requete2 = $pdo->prepare("UPDATE listecarte SET choisi ='NON' WHERE `id` = :id");
+	$requete2 = $pdo->prepare("UPDATE listecarte SET choisi ='OUI' WHERE `id` = :id");
 	$requete2->bindParam(':id', $_GET['id']);
 	$requete2->execute();
 
