@@ -125,7 +125,7 @@ function afficheLaLOOSE(){
  ajaxGet("http://flaviengille.fr/DEVSCHOOL/serveur-api-php/finpartie.php", function (reponse) {
    // Transforme la réponse en un tableau d'articles
         var msg = JSON.parse(reponse);
-        //console.log('partie encore en cours');
+        console.log('partie encore en cours');
         if(msg.finpartie == 'OUI')
         {
          window.location.href="gameover.html";
@@ -186,7 +186,7 @@ function actualiseStat(){
         var tour = JSON.parse(reponse);
           if(tour.Tour == "NON")
           {
-            //console.log("NON pas ton tour");
+            console.log("NON pas ton tour");
                   var element = document.getElementById("cartes");
                   while (element.firstChild) {
                     element.removeChild(element.firstChild);
@@ -197,7 +197,7 @@ function actualiseStat(){
           }
           if(tour.Tour == "OUI" && firstrun == true)
           {
-            //console.log("OUI c'est ton tour");
+            console.log("OUI c'est ton tour");
               
                   var cartesElt = document.getElementById("cartes");
                    ajaxGet("http://flaviengille.fr/DEVSCHOOL/serveur-api-php/cartes.php", function (reponse) {
@@ -254,10 +254,10 @@ function actualiseStat(){
           }
           if(tour.Tour == "OUI" && firstrun == false)
           {
-            //console.log("OUI c'est ton tour et tu traines");
+            console.log("OUI c'est ton tour et tu traines");
           }
         }); 
-  setTimeout(actualiseTour,500);
+  setTimeout(actualiseTour,200);
     }
 
     actualiseTour();

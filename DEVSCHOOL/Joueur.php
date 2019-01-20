@@ -227,7 +227,7 @@ function actualiseTour(){
 
       }
     }); 
- setTimeout(actualiseTour,500);
+ setTimeout(actualiseTour,200);
 }
 
     actualiseTour();
