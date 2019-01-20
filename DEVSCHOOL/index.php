@@ -13,6 +13,7 @@
         <div class="col-12" style="">
           <h1 class="display-3">REST CARD GAME</h1>
           <p class="lead text-muted">Jeux multijoueur sur une architecture REST</p>
+          <a href="" onclick="initPartie()"> Réinitialiser la partie </a>
         </div>
       </div>
     </div>
@@ -40,6 +41,20 @@
 
   </div>
 </div>	
+
+<script type="text/javascript">
+  
+  function initPartie() {
+    
+      var url ="http://flaviengille.fr/DEVSCHOOL/serveur-api-php/INITPARTIE.php";
+    
+      var xhttp = new XMLHttpRequest();
+      
+      xhttp.open("GET", url, true);
+      xhttp.send();
+      window.location.href="index.php";
+    }
+</script>
 
 
 </body>

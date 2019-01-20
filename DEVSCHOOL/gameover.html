@@ -85,7 +85,7 @@ function ajaxGet(url, callback) {
     req.send(null);
 }
     function afficheLaLOOSE(){
-      ajaxGet("http://localhost//DEVSCHOOL/serveur-api-php/finpartie.php", function (reponse) {
+      ajaxGet("http://flaviengille.fr/DEVSCHOOL/serveur-api-php/finpartie.php", function (reponse) {
         // Transforme la réponse en un tableau d'articles
         var msg = JSON.parse(reponse);
          document.getElementById("message").textContent = msg.message;
@@ -99,7 +99,7 @@ function ajaxGet(url, callback) {
 
     function initPartie() {
     
-      var url ="http://localhost//DEVSCHOOL/serveur-api-php/INITPARTIE.php";
+      var url ="http://flaviengille.fr/DEVSCHOOL/serveur-api-php/INITPARTIE.php";
     
       var xhttp = new XMLHttpRequest();
       

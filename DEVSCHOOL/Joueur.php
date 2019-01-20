@@ -97,7 +97,7 @@ function ajaxGet(url, callback) {
 }
 
 function actualiseStat(){
-  ajaxGet("http://localhost//DEVSCHOOL/serveur-api-php/stats.php", function (reponse) {
+  ajaxGet("http://flaviengille.fr/DEVSCHOOL/serveur-api-php/stats.php", function (reponse) {
     // Transforme la réponse en un tableau d'articles
     var stats = JSON.parse(reponse);
     stats.stats.forEach(function (stat) {
@@ -111,7 +111,7 @@ function actualiseStat(){
 }
 
 function afficheLaLOOSE(){
-ajaxGet("http://localhost//DEVSCHOOL/serveur-api-php/finpartie.php", function (reponse) {
+ajaxGet("http://flaviengille.fr/DEVSCHOOL/serveur-api-php/finpartie.php", function (reponse) {
   // Transforme la réponse en un tableau d'articles
        var msg = JSON.parse(reponse);
        console.log('partie encore en cours');
@@ -123,7 +123,7 @@ ajaxGet("http://localhost//DEVSCHOOL/serveur-api-php/finpartie.php", function (r
 
 function validerchoix(id, choix) {
 
-  var url ="http://localhost//DEVSCHOOL/serveur-api-php/validerchoix.php?id=" + id + "&choix=" + choix;
+  var url ="http://flaviengille.fr/DEVSCHOOL/serveur-api-php/validerchoix.php?id=" + id + "&choix=" + choix;
 
   var xhttp = new XMLHttpRequest();
   
@@ -140,7 +140,7 @@ function actualiseTour(){
   actualiseStat();
   afficheLaLOOSE();
 
-  ajaxGet("http://localhost//DEVSCHOOL/serveur-api-php/montour.php?user=JOUEUR", function (reponse) {
+  ajaxGet("http://flaviengille.fr/DEVSCHOOL/serveur-api-php/montour.php?user=JOUEUR", function (reponse) {
     // Transforme la réponse en un tableau d'articles
     var tour = JSON.parse(reponse);
       if(tour.Tour == "NON")
@@ -159,12 +159,12 @@ function actualiseTour(){
       {
         console.log("OUI c'est ton tour");
 
-         ajaxGet("http://localhost//DEVSCHOOL/serveur-api-php/carteschoisi.php", function (reponse) {
+         ajaxGet("http://flaviengille.fr/DEVSCHOOL/serveur-api-php/carteschoisi.php", function (reponse) {
 		    // Transforme la réponse en un tableau d'articles
 		    var cartesElt = document.getElementById("carte");
 		    var carte = JSON.parse(reponse);
 		    carte.carteschoisi.forEach(function (carte) {
-		    	ajaxGet("http://localhost//DEVSCHOOL/serveur-api-php/cartes.php?id=" + carte.id, function (reponse) {
+		    	ajaxGet("http://flaviengille.fr/DEVSCHOOL/serveur-api-php/cartes.php?id=" + carte.id, function (reponse) {
 		    		var cartes = JSON.parse(reponse);
                   	cartes.listecarte.forEach(function (carte) {
                     // Ajout du titre et du contenu de chaque article
@@ -172,7 +172,7 @@ function actualiseTour(){
 
                     var divcarte = document.createElement("div")
 
-                    divcarte.className="col-md-4 card card-body";
+                    divcarte.className="col-md-4 card text-center card-body";
                     divcarte2.className="col-md-4";
                     var titreCarte = document.createElement("h5");
                     titreCarte.className="card-title";
@@ -183,21 +183,35 @@ function actualiseTour(){
                     contenuCarte.innerText = carte.texte;
 
                     var lienCarte = document.createElement("input");
-                    lienCarte.className="btn btn-success";
+                    lienCarte.className="btn btn-success col-md-12";
                     lienCarte.value="Affirmatif";
                     lienCarte.onclick=function(){validerchoix(carte.id, "OUI")};
 
                     var lienCarte2 = document.createElement("input");
-                    lienCarte2.className="btn btn-danger";
+                    lienCarte2.className="btn btn-danger col-md-12";
                     lienCarte2.value="Négatif";
                     lienCarte2.onclick=function(){validerchoix(carte.id, "NON")};
+
+                    var divrow = document.createElement("div")
+                    divrow.className="row";
+
+                    var divcol = document.createElement("div")
+                    divcol.className="col-md-6";
+
+                    var divcol2 = document.createElement("div")
+                    divcol2.className="col-md-6";
 
                     cartesElt.appendChild(divcarte2);
                     cartesElt.appendChild(divcarte);
                     divcarte.appendChild(titreCarte);
                     divcarte.appendChild(contenuCarte);
-                    divcarte.appendChild(lienCarte);
-                    divcarte.appendChild(lienCarte2);
+
+                    divcarte.appendChild(divrow);
+                    divrow.appendChild(divcol);
+                    divrow.appendChild(divcol2);
+
+                    divcol.appendChild(lienCarte);
+                    divcol2.appendChild(lienCarte2);
 					});
 				});
 		    });
