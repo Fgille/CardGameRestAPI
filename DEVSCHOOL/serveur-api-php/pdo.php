@@ -1,9 +1,9 @@
 <?php
-$hote = '**********';
+$hote = 'flaviengzudev.mysql.db';
 $port = "3306";
-$nom_bdd = '**********';
-$utilisateur = '**********';
-$mot_de_passe ='**********';
+$nom_bdd = 'flaviengzudev';
+$utilisateur = 'flaviengzudev';
+$mot_de_passe ='39fYKn5e';
 
 try {
 	//On test la connexion à la base de donnée

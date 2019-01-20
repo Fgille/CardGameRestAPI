@@ -76,20 +76,87 @@ progress {
       <div class="offset-3 col-md-6 card text-center card-body">
         <h4 class="card-title"> Insérer une nouvelle carte dans le jeu </h4>
         <form>
-          <input type="text" name="fTitre" id="fTitre" placeholder="Titre">
-          <input type="text" name="fTexte" id="fTexte" placeholder="Texte de la carte">
-          <input type="text" name="feffetstat1oui" id="feffetstat1oui" placeholder="Effet sur Stat1 si OUI">
-          <input type="text" name="feffetstat1non" id="feffetstat1non" placeholder="Effet sur Stat1 si NON">
-          <input type="text" name="feffetstat2oui" id="feffetstat2oui" placeholder="Effet sur Stat2 si OUI">
-          <input type="text" name="feffetstat2non" id="feffetstat2non" placeholder="Effet sur Stat2 si NON">
-          <input type="text" name="feffetstat3oui" id="feffetstat3oui" placeholder="Effet sur Stat3 si OUI">
-          <input type="text" name="feffetstat3non" id="feffetstat3non" placeholder="Effet sur Stat3 si NON">
-          <input type="text" name="feffetstat4oui" id="feffetstat4oui" placeholder="Effet sur Stat4 si OUI">
-          <input type="text" name="feffetstat4non" id="feffetstat4non" placeholder="Effet sur Stat4 si NON">
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <label for="fTitre">
+                        Titre:</label>
+                    <input class="form-control" type="text" id="fTitre" name="fTitre" placeholder="Titre de la carte">
+                </div>
+            </div>
 
-           <div class="row">
-          <button type="button" class="btn btn-primary offset-3 col-md-6" onclick="ajouterUneCarte()">Ajouter la carte</button>
-          </div>
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <label for="fTexte">
+                        Texte:</label>
+                    <textarea class="form-control" type="textarea" id="fTexte" name="fTexte" placeholder="Texte de la carte" maxlength="6000" rows="7"></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <label for="fimg">
+                        Image de la carte:</label>
+                    <textarea class="form-control" type="text" id="fimg" name="fimg" placeholder="Insérer l'url de la carte"></textarea>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 form-group">
+                    <label for="feffetstat1oui">
+                        Effet Affirmatif sur Stat n°1 :</label>
+                    <input type="text" class="form-control" id="feffetstat1oui" name="feffetstat1oui"  maxlength="10">
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="feffetstat1non">
+                        Effet Négatif sur Stat n°1 :</label>
+                    <input type="text" class="form-control" id="feffetstat1non" name="feffetstat1non"  maxlength="10">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 form-group">
+                    <label for="feffetstat2oui">
+                        Effet Affirmatif sur Stat n°2 :</label>
+                    <input type="text" class="form-control" id="feffetstat2oui" name="feffetstat2oui"  maxlength="10">
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="feffetstat2non">
+                        Effet Négatif sur Stat n°2 :</label>
+                    <input type="text" class="form-control" id="feffetstat2non" name="feffetstat2non"  maxlength="10">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 form-group">
+                    <label for="feffetstat3oui">
+                        Effet Affirmatif sur Stat n°3 :</label>
+                    <input type="text" class="form-control" id="feffetstat3oui" name="feffetstat3oui"  maxlength="10">
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="feffetstat3non">
+                        Effet Négatif sur Stat n°3 :</label>
+                    <input type="text" class="form-control" id="feffetstat3non" name="feffetstat3non"  maxlength="10">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6 form-group">
+                    <label for="feffetstat4oui">
+                        Effet Affirmatif sur Stat n°4 :</label>
+                    <input type="text" class="form-control" id="feffetstat4oui" name="feffetstat4oui"  maxlength="10">
+                </div>
+                <div class="col-sm-6 form-group">
+                    <label for="feffetstat4non">
+                        Effet Négatif sur Stat n°4:</label>
+                    <input type="text" class="form-control" id="feffetstat4non" name="feffetstat4non"  maxlength="10">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 form-group">
+                    <button class="btn btn-lg btn-success btn-block" onclick="ajouterUneCarte()">Ajouter Votre Carte ! </button>
+                </div>
+            </div>
         </form>
 
       </div>
@@ -216,6 +283,11 @@ function actualiseStat(){
                       contenuCarte.className="card-text";
                       contenuCarte.innerText = carte.texte;
 
+                      var imgCarte = document.createElement("img");
+                      imgCarte.src = carte.img;
+                      imgCarte.setAttribute('width', 250);
+                      imgCarte.setAttribute('width', 250);
+
                       var lienCarte = document.createElement("input");
                       lienCarte.className="btn btn-info col-md-12";
                       lienCarte.value="Choisir";
@@ -229,7 +301,7 @@ function actualiseStat(){
                       lienCarteSup.onclick=function(){supprimerCarte(carte.id)};
 
                       var divrow = document.createElement("div")
-                      divrow.className="row";
+                      divrow.className="row py-2";
 
                       var divcol = document.createElement("div")
                       divcol.className="col-md-6";
@@ -240,6 +312,7 @@ function actualiseStat(){
                       cartesElt.appendChild(divcarte);
                       divcarte.appendChild(titreCarte);
                       divcarte.appendChild(contenuCarte);
+                      divcarte.appendChild(imgCarte);
                       divcarte.appendChild(divrow);
                       divrow.appendChild(divcol);
                       divrow.appendChild(divcol2);
@@ -275,6 +348,7 @@ function actualiseStat(){
       var feffetstat2oui = document.getElementById("feffetstat2oui").value;
       var feffetstat3oui = document.getElementById("feffetstat3oui").value;
       var feffetstat4oui = document.getElementById("feffetstat4oui").value;
+      var fimg =document.getElementById("fimg").value;
 
       var feffetstat1non = document.getElementById("feffetstat1non").value;
       var feffetstat2non = document.getElementById("feffetstat2non").value;
@@ -282,7 +356,7 @@ function actualiseStat(){
       var feffetstat4non = document.getElementById("feffetstat4non").value;
 
 
-      var url ="http://flaviengille.fr/DEVSCHOOL/serveur-api-php/addcarte.php?Titre=" + fTitre + "&Texte=" + fTexte + "&effetstat1oui=" + feffetstat1oui + "&effetstat2oui=" + feffetstat2oui + "&effetstat3oui=" + feffetstat3oui + "&effetstat4oui=" + feffetstat4oui + "&effetstat1non=" + feffetstat1non + "&effetstat2non=" + feffetstat2non + "&effetstat3non=" + feffetstat3non + "&effetstat4non=" + feffetstat4non + "";
+      var url ="http://flaviengille.fr/DEVSCHOOL/serveur-api-php/addcarte.php?Titre=" + fTitre + "&Texte=" + fTexte + "&img=" + fimg +"&effetstat1oui=" + feffetstat1oui + "&effetstat2oui=" + feffetstat2oui + "&effetstat3oui=" + feffetstat3oui + "&effetstat4oui=" + feffetstat4oui + "&effetstat1non=" + feffetstat1non + "&effetstat2non=" + feffetstat2non + "&effetstat3non=" + feffetstat3non + "&effetstat4non=" + feffetstat4non + "";
 
       console.log(url);
     

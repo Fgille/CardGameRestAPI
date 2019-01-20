@@ -182,6 +182,11 @@ function actualiseTour(){
                     contenuCarte.className="card-text";
                     contenuCarte.innerText = carte.texte;
 
+                    var imgCarte = document.createElement("img");
+                    imgCarte.src = carte.img;
+                    imgCarte.setAttribute('width', 250);
+                    imgCarte.setAttribute('width', 250);
+
                     var lienCarte = document.createElement("input");
                     lienCarte.className="btn btn-success col-md-12";
                     lienCarte.value="Affirmatif";
@@ -193,7 +198,7 @@ function actualiseTour(){
                     lienCarte2.onclick=function(){validerchoix(carte.id, "NON")};
 
                     var divrow = document.createElement("div")
-                    divrow.className="row";
+                    divrow.className="row py-2";
 
                     var divcol = document.createElement("div")
                     divcol.className="col-md-6";
@@ -205,6 +210,7 @@ function actualiseTour(){
                     cartesElt.appendChild(divcarte);
                     divcarte.appendChild(titreCarte);
                     divcarte.appendChild(contenuCarte);
+                    divcarte.appendChild(imgCarte);
 
                     divcarte.appendChild(divrow);
                     divrow.appendChild(divcol);

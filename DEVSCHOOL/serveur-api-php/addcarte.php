@@ -3,9 +3,10 @@ include('template.php');
 
 if( !empty($_GET['Titre']) && !empty($_GET['Texte'])){
 	//Si toutes les données sont saisie par le client
-	$requete = $pdo->prepare("INSERT INTO `listecarte` (`titre`, `texte`, `effetstat1oui`, `effetstat2oui`, `effetstat3oui`, `effetstat4oui`, `effetstat1non`, `effetstat2non`, `effetstat3non`, `effetstat4non`) VALUES (:titre, :texte, :effetstat1oui, :effetstat2oui, :effetstat3oui, :effetstat4oui, :effetstat1non, :effetstat2non, :effetstat3non, :effetstat4non);");
+	$requete = $pdo->prepare("INSERT INTO `listecarte` (`titre`, `texte`, `img`,`effetstat1oui`, `effetstat2oui`, `effetstat3oui`, `effetstat4oui`, `effetstat1non`, `effetstat2non`, `effetstat3non`, `effetstat4non`) VALUES (:titre, :texte, :img,:effetstat1oui, :effetstat2oui, :effetstat3oui, :effetstat4oui, :effetstat1non, :effetstat2non, :effetstat3non, :effetstat4non);");
 	$requete->bindParam(':titre', $_GET['Titre']);
 	$requete->bindParam(':texte', $_GET['Texte']);
+	$requete->bindParam(':img', $_GET['img']);
 	$requete->bindParam(':effetstat1oui', $_GET['effetstat1oui']);
 	$requete->bindParam(':effetstat2oui', $_GET['effetstat2oui']);
 	$requete->bindParam(':effetstat3oui', $_GET['effetstat3oui']);
