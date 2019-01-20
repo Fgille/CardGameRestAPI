@@ -1,9 +1,9 @@
 <?php
-$hote = 'localhost';
+$hote = '**********';
 $port = "3306";
-$nom_bdd = 'cardgamerest';
-$utilisateur = 'root';
-$mot_de_passe ='';
+$nom_bdd = '**********';
+$utilisateur = '**********';
+$mot_de_passe ='**********';
 
 try {
 	//On test la connexion à la base de donnée
