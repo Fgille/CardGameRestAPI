@@ -16,10 +16,49 @@ if( $requete->execute() ){
 
 if(!empty($resultats))
 {
-	if($resultats['0']['stat1'] <=0 || $resultats['0']['stat1'] >= 10 || $resultats['0']['stat2'] <=0 || $resultats['0']['stat2'] >= 10 || $resultats['0']['stat3'] <=0 || $resultats['0']['stat3'] >= 10 || $resultats['0']['stat4'] <=0 || $resultats['0']['stat4'] >= 10){
+	if($resultats['0']['stat1'] <=0){
 		$data['finpartie'] = 'OUI';
-		$data['message'] = "L'aventurier ne sais donc pas vaincre le Maître....";
+		$data['message'] = "L'aventurier ne sait donc pas vaincre le Maître.... 
+		L'aventurier n'a plus de vie";
 	}
+
+	else if($resultats['0']['stat1'] >= 10){
+		$data['finpartie'] = 'OUI';
+		$data['message'] = "L'aventurier ne sait donc pas vaincre le Maître....";
+	}
+
+	else if($resultats['0']['stat2'] <=0){
+		$data['finpartie'] = 'OUI';
+		$data['message'] = "L'aventurier ne sait donc pas vaincre le Maître....";
+	}
+
+	else if($resultats['0']['stat2'] >= 10){
+		$data['finpartie'] = 'OUI';
+		$data['message'] = "L'aventurier ne sait donc pas vaincre le Maître....";
+	}
+
+	else if($resultats['0']['stat3'] <=0){
+		$data['finpartie'] = 'OUI';
+		$data['message'] = "L'aventurier ne sait donc pas vaincre le Maître....";
+	}
+
+	else if($resultats['0']['stat3'] >= 10){
+		$data['finpartie'] = 'OUI';
+		$data['message'] = "L'aventurier ne sait donc pas vaincre le Maître....";
+	}
+
+	else if($resultats['0']['stat4'] <=0){
+		$data['finpartie'] = 'OUI';
+		$data['message'] = "L'aventurier ne sait donc pas vaincre le Maître....";
+	}
+
+	else if($resultats['0']['stat4'] >= 10){
+		$data['finpartie'] = 'OUI';
+		$data['message'] = "L'aventurier ne sait donc pas vaincre le Maître....";
+	}
+
+
+
 	else {
 
 		$req = $pdo2->prepare("SELECT * FROM `listecarte` WHERE `choisi` like 'NON'");

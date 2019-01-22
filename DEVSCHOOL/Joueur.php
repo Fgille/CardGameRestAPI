@@ -31,21 +31,21 @@ progress {
     <div class="container">
       <div class="row">
         <div class="col-md-3">
-          <h1 class="text-center">Stat 1</h1>
+          <h1 class="text-center">Vie</h1>
         </div>
         <div class="col-md-3">
           <div class="col-md-12">
-            <h1 class="text-center">Stat 2</h1>
+            <h1 class="text-center">Mana</h1>
           </div>
         </div>
         <div class="col-md-3">
           <div class="col-md-12">
-            <h1 class="text-center">Stat 3</h1>
+            <h1 class="text-center">Force</h1>
           </div>
         </div>
         <div class="col-md-3">
           <div class="col-md-12">
-            <h1 class="text-center">Stat 4</h1>
+            <h1 class="text-center">Argent</h1>
           </div>
         </div>
         <div class="col-md-3 ">
@@ -66,8 +66,6 @@ progress {
 
   <div class="container text-center">
     <div class="row" id="carte">
-    	 <div class="col-md-4 ">
-    	 </div>
 
   </div>
 </div>	
