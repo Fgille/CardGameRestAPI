@@ -1,7 +1,11 @@
 <?php
 include('template.php');
 
-if( !empty($_GET["id"]) && !empty($_GET["choix"])){
+$info = json_decode(file_get_contents('http://flaviengille.fr/DEVSCHOOL/serveur-api-php/montour.php?user=Joueur'));
+
+if ($info->Tour == 'OUI')
+{
+	if( !empty($_GET["id"]) && !empty($_GET["choix"])){
 
 	if($_GET['choix'] == 'OUI')
 	{
@@ -35,5 +39,8 @@ if( !empty($_GET["id"]) && !empty($_GET["choix"])){
 } else {
 	$msg = "Il manque des informations";
 }
+}
 
+
+print_r($info);
 reponse_json($success, $data, $msg);
