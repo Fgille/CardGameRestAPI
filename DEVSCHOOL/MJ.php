@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <title>Card Game API REST</title>
   <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="open-iconic/font/css/open-iconic-bootstrap.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="jquery-3.3.1.min.js"></script>
         <style type="text/css">
 progress {
@@ -109,7 +109,7 @@ progress {
                 </div>
                 <div class="col-sm-6 form-group">
                     <label for="feffetstat1non">
-                        Effet Négatif sur Stat sur la Vie :</label>
+                        Effet Négatif sur la Vie :</label>
                     <input type="text" class="form-control" id="feffetstat1non" name="feffetstat1non"  maxlength="10">
                 </div>
             </div>
@@ -122,7 +122,7 @@ progress {
                 </div>
                 <div class="col-sm-6 form-group">
                     <label for="feffetstat2non">
-                        Effet Négatif sur Stat sur la Mana :</label>
+                        Effet Négatif sur la Mana :</label>
                     <input type="text" class="form-control" id="feffetstat2non" name="feffetstat2non"  maxlength="10">
                 </div>
             </div>
@@ -288,15 +288,21 @@ function actualiseStat(){
                       imgCarte.src = carte.img;
                       imgCarte.setAttribute('width', "100%");
 
-                      var lienCarte = document.createElement("input");
+                      var lienCarte = document.createElement("button");
                       lienCarte.className="btn btn-info col-md-12";
-                      lienCarte.value="Choisir";
+                      //lienCarte.innerText="Choisir";
+
+                      var iLienCarte = document.createElement("i");
+                      iLienCarte.className="fas fa-check-circle";
 
                       lienCarte.onclick=function(){chargercarte(carte.id)};
 
-                      var lienCarteSup = document.createElement("input");
+                      var lienCarteSup = document.createElement("button");
                       lienCarteSup.className="btn btn-danger col-md-12";
-                      lienCarteSup.value="Supprimer";
+                      //lienCarteSup.innerText="Supprimer";
+
+                      var iLienCarteSup = document.createElement("i");
+                      iLienCarteSup.className="far fa-times-circle";
 
                       lienCarteSup.onclick=function(){supprimerCarte(carte.id)};
 
@@ -317,7 +323,9 @@ function actualiseStat(){
                       divrow.appendChild(divcol);
                       divrow.appendChild(divcol2);
                       divcol.appendChild(lienCarte);
+                      lienCarte.appendChild(iLienCarte);
                       divcol2.appendChild(lienCarteSup);
+                      lienCarteSup.appendChild(iLienCarteSup);
 
                   });
               });
@@ -330,7 +338,7 @@ function actualiseStat(){
             console.log("OUI c'est ton tour et tu traines");
           }
         }); 
-  setTimeout(actualiseTour,200);
+  setTimeout(actualiseTour,350);
     }
 
     actualiseTour();

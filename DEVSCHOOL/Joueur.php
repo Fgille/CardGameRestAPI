@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>Card Game API REST</title>
   <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <script src="jquery-3.3.1.min.js"></script>
         <style type="text/css">
 progress {
@@ -185,15 +186,21 @@ function actualiseTour(){
                     imgCarte.setAttribute('width', 250);
                     imgCarte.setAttribute('width', 250);
 
-                    var lienCarte = document.createElement("input");
+                    var lienCarte = document.createElement("button");
                     lienCarte.className="btn btn-success col-md-12";
-                    lienCarte.value="Affirmatif";
+                    //lienCarte.value="Affirmatif";
                     lienCarte.onclick=function(){validerchoix(carte.id, "OUI")};
 
-                    var lienCarte2 = document.createElement("input");
+                    var iLienCarte = document.createElement("i");
+                    iLienCarte.className ="fas fa-check-circle";
+
+                    var lienCarte2 = document.createElement("button");
                     lienCarte2.className="btn btn-danger col-md-12";
-                    lienCarte2.value="Négatif";
+                    //lienCarte2.value="Négatif";
                     lienCarte2.onclick=function(){validerchoix(carte.id, "NON")};
+
+                    var iLienCarte2 = document.createElement("i");
+                    iLienCarte2.className ="far fa-times-circle";
 
                     var divrow = document.createElement("div")
                     divrow.className="row py-2";
@@ -215,7 +222,9 @@ function actualiseTour(){
                     divrow.appendChild(divcol2);
 
                     divcol.appendChild(lienCarte);
+                    lienCarte.appendChild(iLienCarte);
                     divcol2.appendChild(lienCarte2);
+                    lienCarte2.appendChild(iLienCarte2);
 					});
 				});
 		    });
@@ -231,7 +240,7 @@ function actualiseTour(){
 
       }
     }); 
- setTimeout(actualiseTour,200);
+ setTimeout(actualiseTour,350);
 }
 
     actualiseTour();
